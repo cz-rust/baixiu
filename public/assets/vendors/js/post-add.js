@@ -41,4 +41,16 @@ $('.postForm').on('submit',function(){
         
     }) 
     return false
-})
+});
+function getId(name) {
+   var arr=location.search.substr(1).split('&');
+   var len=-1
+   arr.forEach(item=>{
+     var temp=item.split('=')
+     if(temp[0]===name){
+         len=temp[1]
+     }
+   })
+    return len
+}
+console.log(getId('id')) 
