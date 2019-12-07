@@ -1,4 +1,5 @@
 
+
 //分类列表
 $.ajax({
     url:'/categories',
@@ -53,4 +54,36 @@ function getId(name) {
    })
     return len
 }
-console.log(getId('id')) 
+
+if(getId('id')!=-1){
+    $.ajax({
+        url:'/posts/'+getId('id'),
+        type:'get',
+        success:function (data) {
+            $.ajax({
+                url:'/categories',
+                type:'get',
+                success:function(res){
+                    data.res=res
+                    console.log(data)
+                    var html=template('modifyTpl',data)
+                    $('#parentBox').html(html)
+                }
+            });
+            
+        }
+    })
+};
+$('#parentBox').on('submit','#postModify',function(){
+    var formdata=$(this).serialize();
+    var id=$(this).attr('data-id')
+    $.ajax({
+        url:'/posts/'+id,
+        type:'put',
+        data:formdata,
+        success:function(){
+            location.href='/admin/posts.html'
+        }
+    })
+    return false
+})

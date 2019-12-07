@@ -54,4 +54,15 @@ $.ajax({
             }
         });
             return false
+    });
+    //删除
+    $('.postBox').on('click','#delete',function () {
+       var id= $(this).attr('data-id')
+       $.ajax({
+           url:'/posts/'+id,
+           type:'delete',
+           success:function(data) {
+               location.reload()
+           }
+       })
     })

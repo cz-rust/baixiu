@@ -1,0 +1,22 @@
+$.ajax({
+    url:'/posts/count',
+    type:'get',
+    success:function(res){
+       $('#articalCount').html(`<strong>${res.postCount}</strong>篇文章（<strong>${res.draftCount}</strong>篇草稿）`)
+    }
+})
+$.ajax({
+    url:'/categories/count',
+    type:'get',
+    success:function(res){
+        console.log(res)
+        $('#list-post').html(`<strong>${res.categoryCount}</strong>个分类`)
+    }
+})
+$.ajax({
+    url:'/comments/count',
+    type:'get',
+    success:function(res){
+        $('#comments-index').html(`<strong>${res.commentCount}</strong>条评论`)
+    }
+})
